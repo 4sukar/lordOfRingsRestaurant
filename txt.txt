@@ -1,0 +1,7 @@
+model Dish {
+  id Int @id @default(autoincrement())
+  name String
+  price Float
+  description String
+  image String
+}
