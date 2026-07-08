@@ -1,0 +1,15 @@
+generator client {
+  provider   = "prisma-client"
+  output     = "./generated"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+model Dish {
+  id Int @id @default(autoincrement())
+  name String
+  price Float
+  description String
+  image String
+}

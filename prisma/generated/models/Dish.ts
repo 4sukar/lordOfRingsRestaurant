@@ -232,14 +232,14 @@ export type DishOrderByWithRelationInput = {
 
 export type DishWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  name?: string
-  description?: string
   AND?: Prisma.DishWhereInput | Prisma.DishWhereInput[]
   OR?: Prisma.DishWhereInput[]
   NOT?: Prisma.DishWhereInput | Prisma.DishWhereInput[]
+  name?: Prisma.StringFilter<"Dish"> | string
   price?: Prisma.FloatFilter<"Dish"> | number
+  description?: Prisma.StringFilter<"Dish"> | string
   image?: Prisma.StringFilter<"Dish"> | string
-}, "id" | "name" | "description">
+}, "id">
 
 export type DishOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
