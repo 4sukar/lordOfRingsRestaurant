@@ -8,7 +8,8 @@
   "dependencies": {
     "@prisma/adapter-better-sqlite3": "^7.8.0",
     "@prisma/client": "^7.8.0",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "zod": "^4.4.3"
   },
   "type": "module",
   "devDependencies": {
@@ -28,7 +29,7 @@
     "better-sqlite3@12.11.1": true,
     "esbuild@0.27.7": true,
     "fsevents@2.3.3": true,
-    "@prisma/engines@6.19.3": true,
-    "prisma@6.19.3": true
+    "prisma@7.8.0": true,
+    "@prisma/engines@7.8.0": true
   }
 }

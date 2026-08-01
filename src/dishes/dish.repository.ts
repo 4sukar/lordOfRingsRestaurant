@@ -1,9 +1,9 @@
 
 import { prisma } from "../infra/prisma/prisma";
-import { Dish } from "./dish";
+import { CreavteDishDTO, Dish } from "./dish";
 
 export interface DishRepository{
-    create(payload: Dish):Promise<Dish>
+    create(payload: CreavteDishDTO):Promise<Dish>
     find():Promise<Dish[]>
 
 }
@@ -49,11 +49,11 @@ export class LocalFileDishRepository implements DishRepository {
 
   ];
 
-  async create(payload: Dish): Promise<Dish> {
+  async create(payload: CreavteDishDTO): Promise<Dish> {
+    const newDishe = {id:1, ...payload}
+    this.dishes.push(newDishe);
 
-    this.dishes.push(payload);
-
-    return payload;
+    return newDishe;
 
   }
 
@@ -68,7 +68,7 @@ export class LocalFileDishRepository implements DishRepository {
 
 export class PrismaDishRepository implements DishRepository {
 
-  async create(payload: Dish): Promise<Dish> {
+  async create(payload: CreavteDishDTO): Promise<Dish> {
   const dish = await prisma.dish.create({
     data: {
       name: payload.name,
@@ -87,3 +87,4 @@ export class PrismaDishRepository implements DishRepository {
 
 }
 
+//regras de negocio
