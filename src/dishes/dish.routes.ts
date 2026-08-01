@@ -8,6 +8,7 @@ export const dishRouter = Router(); //express rotas
 
 dishRouter.post("/dishes", async (req, res, next) => {
   try {
+    DishSchema.parse(req.body)
       const dish = await dishService.create(req.body); //criar o jason
   return res.status(201).json(dish);
   } catch (error) {
@@ -31,7 +32,7 @@ const DishSchema = z.object({
   .positive({ error: "The price must be greater than 0"}),
   description: z
   .string()
-  .min(30, { error: "The description must have at least 30 characters"})
+  .min(10, { error: "The description must have at least 10 characters"})
   .max(300, { error : "The description must have a maximum of 300 characters"}),
   image: z
   .url({ error: "the url isn't valid"})
