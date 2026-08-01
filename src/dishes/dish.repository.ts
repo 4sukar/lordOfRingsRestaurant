@@ -5,9 +5,12 @@ import { CreavteDishDTO, Dish } from "./dish";
 export interface DishRepository{
     create(payload: CreavteDishDTO):Promise<Dish>
     find():Promise<Dish[]>
-
+    findByNameOrDescription(name: string, description: string):Promise<Dish[]>
 }
 export class LocalFileDishRepository implements DishRepository {
+  findByNameOrDescription(name: string, description: string): Promise<Dish[]> {
+    throw new Error("Method not implemented.");
+  }
 
   private dishes: Dish[] = [
 
@@ -67,6 +70,10 @@ export class LocalFileDishRepository implements DishRepository {
 
 
 export class PrismaDishRepository implements DishRepository {
+  async findByNameOrDescription(name: string, description: string): Promise<Dish[]> {
+   const findDish = await prisma.dish.findMany({where: {OR: [{name},{description}]}})
+   return findDish;
+  }
 
   async create(payload: CreavteDishDTO): Promise<Dish> {
   const dish = await prisma.dish.create({
